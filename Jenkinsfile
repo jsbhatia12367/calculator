@@ -24,7 +24,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'calculator') {
+        docker.withRegistry('https://registry.hub.docker.com', '81196') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
