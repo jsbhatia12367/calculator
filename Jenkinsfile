@@ -32,7 +32,7 @@ node {
     }
 	stage('Deploying image with rundeck') {
      
-        build job: 'calculator'
+        build job: 'job1'
         
       }
 }
