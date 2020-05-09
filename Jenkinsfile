@@ -32,7 +32,7 @@ node {
     }
 	stage('Deploying image with rundeck') {
      
-        build job: 'calculator_pipeline'
+        build job: 'calculator-jenkins'
         
       }
 }
