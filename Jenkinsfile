@@ -17,5 +17,10 @@ pipeline {
        sh 'mvn test'
       }
     }
+      stage('Deploying image with rundeck') {
+
+    build job: 'new p'
+
+    } 
   }
 }
