@@ -1,26 +1,38 @@
-pipeline {
-  agent any
-  stages 
-    {
-    stage('Clean') {
-      steps {
-       sh 'mvn clean'
-      }
-    }
-    stage('Compile') {
-      steps {
-       sh 'mvn compile'
-      }
-    }
-    stage('Test') {
-      steps {
-       sh 'mvn test'
-      }
-    }
-      stage('Deploying image with rundeck') {
+node {
+    def app
 
-    build job: 'new p'
+    stage('Clone repository') {
+        /* Cloning the Repository to our Workspace */
 
-    } 
-  }
+        checkout scm
+    }
+	stage('Build project'){
+	    sh 'mvn clean install'
+	}
+
+    stage('Build image') {
+        /* This builds the actual image */
+
+        app = docker.build("shivani96/jenkins-docker")
+    }
+
+    stage('Test image') {
+        
+        app.inside {
+            echo "Tests passed"
+        }
+    }
+
+    stage('Push image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-jenkins') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+            } 
+                echo "Trying to Push Docker Build to DockerHub"
+    }
+	stage('Deploying image with rundeck') {
+     
+        build job: 'rundeck-pipeline'
+        
+      }
 }
