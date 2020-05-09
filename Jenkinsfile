@@ -24,7 +24,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', '81196') {
+        docker.withRegistry('https://registry.hub.docker.com', 'sri-docker') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
