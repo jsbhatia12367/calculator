@@ -24,7 +24,7 @@ node {
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-jenkins') {
+        docker.withRegistry('https://registry.hub.docker.com', 'calculator') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
