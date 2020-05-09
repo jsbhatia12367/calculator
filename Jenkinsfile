@@ -13,7 +13,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("shivani96/jenkins-docker")
+        app = docker.build("81196/calculator")
     }
 
     stage('Test image') {
