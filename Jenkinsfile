@@ -8,7 +8,11 @@ node {
         checkout scm
     }
 	stage('Build project'){
-	    sh 'mvn clean install'
+				sh 'export MAVEN_HOME=/opt/maven'
+		sh 'export PATH=$PATH:$MAVEN_HOME/bin'
+		sh 'mvn --3.6.3'
+		sh 'mvn clean package'
+	        sh 'mvn clean install'
 	}
 
     stage('Build image') {
