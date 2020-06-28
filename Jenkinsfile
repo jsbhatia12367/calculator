@@ -8,13 +8,14 @@ node {
         checkout scm
     }
 	stage('Build project'){
+		checkout scm
 				
 	}
 
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("81196/calculator")
+        app = docker.build("jsbhatia12367/calculator")
     }
 
     stage('Test image') {
