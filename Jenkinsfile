@@ -12,7 +12,7 @@ node {
         checkout scm
     }
 	stage('Build project'){
-	    sh 'mvn clean install'
+	   /* sh 'mvn clean install'*/
 	}
 
     stage('Build image') {
