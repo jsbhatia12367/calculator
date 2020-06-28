@@ -1,6 +1,5 @@
 node {
     def app
-	
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
@@ -8,14 +7,13 @@ node {
         checkout scm
     }
 	stage('Build project'){
-		checkout scm
-				
+	    sh 'mvn clean install'
 	}
 
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("jsbhatia12367/calculator")
+        app = docker.build("81196/calculator")
     }
 
     stage('Test image') {
