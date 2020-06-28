@@ -1,5 +1,10 @@
 node {
     def app
+	
+	agent any
+    tools {
+        maven 'apache-maven-3.6.3' 
+    }
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
