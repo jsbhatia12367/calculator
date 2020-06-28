@@ -1,21 +1,17 @@
 node {
     def app
-	
-	agent any
-	    tools {
-		maven 'apache-maven-3.6.3' 
-	    }
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
         checkout scm
     }
-	
+	stage('Build project'){
+	    sh 'mvn clean install'
+	}
 
     stage('Build image') {
         /* This builds the actual image */
-	    
 
         app = docker.build("81196/calculator")
     }
