@@ -8,6 +8,7 @@ node {
     }
 	stage('Build project'){
 	    /*sh 'mvn clean install'*/
+		checkout scm
 	}
 
     stage('Build image') {
